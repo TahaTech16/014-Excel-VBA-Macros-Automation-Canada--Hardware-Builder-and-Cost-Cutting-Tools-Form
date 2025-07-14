@@ -1,0 +1,247 @@
+ 
+ 
+ 
+Private Sub cmbGFM_Change()
+   Call setValue
+   Call initializeValue
+End Sub
+
+Private Sub UserForm_Initialize()
+   'Me.cmbGFM.AddItem (100)''accepting integer value
+   'Me.cmbGFM.AddItem ("500") ''accepting string value
+   ' select style property as 2-list that user can not type in drop down
+   
+   
+   Me.cmbGFM.AddItem (500)
+   Me.cmbGFM.AddItem (1000)
+   Me.cmbGFM.AddItem (1500)
+   Me.cmbGFM.AddItem (2000)
+   Me.cmbGFM.AddItem (3000)
+
+   Me.cmbWelded.AddItem ("Yes")
+   Me.cmbWelded.AddItem ("No")
+   
+   Me.cmbMOC.AddItem ("SS-316")
+   Me.cmbMOC.AddItem ("SS-304")
+   Me.cmbMOC.AddItem ("Al")
+   
+   Me.cmbGFM.Value = 500
+   Me.cmbWelded.Value = "Yes"
+   Me.cmbMOC.Value = "SS-316"
+   
+   Call setValue
+   Call initializeValue
+   Call lockTextBox
+   Call fillDescription
+   Call fillQuantity
+   
+End Sub
+
+Sub initializeValue()
+    var_cfm = cmbGFM.Value
+    var_welded = cmbWelded.Value
+    var_moc = cmbMOC.Value
+    
+    var_ThOfMocIn = TextBox1.Value
+    var_ContactTime = TextBox2.Value
+    var_BaseHeight = TextBox3.Value
+    var_TotalHeight = TextBox4.Value
+    var_Win = TextBox5.Value
+    var_Din = TextBox6.Value
+    var_ThOfMoc = TextBox7.Value
+    var_Casing = TextBox8.Value
+    var_MediaVolume = TextBox9.Value
+    var_MediaHeight = TextBox10.Value
+    var_DesingFpm = TextBox11.Value
+    var_DensityOfMoc = TextBox12.Value
+    var_SafetyFactor = TextBox13.Value
+    
+End Sub
+
+Sub setValue()
+    
+    var_cfm = cmbGFM.Value
+    var_welded = cmbWelded.Value
+    var_moc = cmbMOC.Value
+    
+    If var_cfm = 500 Then
+        var_Win = 36
+    End If
+    
+    If var_cfm = 1000 Then
+        var_Win = 50
+    End If
+    
+    If var_cfm = 1500 Then
+        var_Win = 60
+    End If
+    
+    If var_cfm = 2000 Then
+        var_Win = 67
+    End If
+    
+    If var_cfm = 3000 Then
+        var_Win = 81
+    End If
+    
+    
+    TextBox1.Value = 0.0625
+    TextBox2.Value = 2.5
+    TextBox3.Value = 52
+    TextBox4.Value = 110
+    
+    TextBox5.Value = var_Win
+    TextBox6.Value = var_Win
+    
+    TextBox7.Value = 1 / 16
+    TextBox8.Value = 110 - TextBox3.Value
+    
+    TextBox9.Value = (var_cfm * TextBox2.Value) / 60
+    var_MediaHeight = (12 * 12 * 12 * TextBox9.Value) / TextBox5.Value
+    var_MediaHeight = var_MediaHeight / TextBox6.Value
+    TextBox10.Value = var_MediaHeight
+    TextBox11.Value = var_cfm / (TextBox5.Value / 12 * TextBox6.Value / 12)
+    
+    TextBox12.Value = 0.286
+    TextBox13.Value = 1.2
+
+    'TextBox1.Value = Format(TextBox1.Value, "0.00")''// we can use # symbol also but 0.263 it is showing as .26
+    
+'    TextBox1.Value = Format(TextBox1.Value, "#.##")
+'    TextBox2.Value = Format(TextBox2.Value, "##.##")
+'    TextBox3.Value = Format(TextBox3.Value, "##.##")
+'    TextBox4.Value = Format(TextBox4.Value, "##.##")
+'    TextBox5.Value = Format(TextBox5.Value, "##.##")
+'    TextBox6.Value = Format(TextBox6.Value, "##.##")
+'    TextBox7.Value = Format(TextBox7.Value, "##.##")
+'    TextBox8.Value = Format(TextBox8.Value, "##.##")
+'    TextBox9.Value = Format(TextBox9.Value, "##.##")
+'    TextBox10.Value = Format(TextBox10.Value, "##.##")
+'    TextBox11.Value = Format(TextBox11.Value, "##.##")
+'    TextBox12.Value = Format(TextBox12.Text, "##.##")
+'    TextBox13.Value = Format(TextBox13.Value, "##.##")
+    
+    TextBox1.Value = Format(TextBox1.Value, "0.00")
+    TextBox2.Value = Format(TextBox2.Value, "0.00")
+    TextBox3.Value = Format(TextBox3.Value, "0.00")
+    TextBox4.Value = Format(TextBox4.Value, "0.00")
+    TextBox5.Value = Format(TextBox5.Value, "0.00")
+    TextBox6.Value = Format(TextBox6.Value, "0.00")
+    TextBox7.Value = Format(TextBox7.Value, "0.00")
+    TextBox8.Value = Format(TextBox8.Value, "0.00")
+    TextBox9.Value = Format(TextBox9.Value, "0.00")
+    TextBox10.Value = Format(TextBox10.Value, "0.00")
+    TextBox11.Value = Format(TextBox11.Value, "0.00")
+    TextBox12.Value = Format(TextBox12.Text, "0.00")
+    TextBox13.Value = Format(TextBox13.Value, "0.00")
+    
+End Sub
+
+
+Sub lockTextBox()
+    TextBox5.Locked = True
+    TextBox6.Locked = True
+    TextBox7.Locked = True
+    TextBox8.Locked = True
+    TextBox9.Locked = True
+    TextBox10.Locked = True
+    TextBox11.Locked = True
+
+
+End Sub
+
+
+
+Sub fillDescription()
+    
+    txt_Desc_SidePanel = "Side Panels"
+    txt_Desc_BottomAndTop = "Bottom and Top Panels"
+    txt_Desc_ExteriorHorizontal = "Exterior Panel Support- Horizontal"
+    txt_Desc_ExteriorVertical = "Exterior Panel Support- Vertical"
+    txt_Desc_SightGlass = "Sight Glass 4'x48'x7/32"
+    txt_Desc_FirstGroup = ""
+    
+    
+    txt_Desc_PerforatedSheet = "Perforated Sheet"
+    txt_Desc_InternalSupport = "Internal Support Angles-1.5'x1.5'x1/8'(L:   )"
+    txt_Desc_SupportLegs = "Support legs for Cross Bracing members-1.5'x1.5'x1/8'"
+    txt_Desc_CrossBracing = "Cross Bracing Members-FB 2'x1/4'"
+    txt_Desc_SecondGroup = ""
+    
+    
+    txt_Desc_InletPipe = "Inlet Pipe (316/316L SST Unthreaded Pipe, D:8'xL:4'xTh:0.148')"
+    txt_Desc_DischargePort = ""
+    
+    txt_Desc_DischargeFlangeSlip = "Discharge flange-Slip-on Weld Adapter, 6 Pipe Size"
+    txt_Desc_DischargeFlangeBlind = "Discharge flange-Blind-Cap, 6 Pipe Size"
+    txt_Desc_FillingPortFlange = "Filling Port Flange"
+    txt_Desc_FillingPortLead = "Filling Port-Lead"
+    txt_Desc_FillingPortGasket = "Filling Port-Gasket"
+    txt_Desc_HexBolt = "Hex Bolt and Nut-3/8'-24 Thread Size, 7/8' Long-"
+    txt_Desc_AirOutletFlange1 = "Air Outlet Flange-01"
+    txt_Desc_AirOutletFlange2 = "Air Outlet Flange-02"
+    txt_Desc_SamplingPortThreaded = "Sampling Port-Threaded on One End, 2 NPT, 8' Long"
+    txt_Desc_SamplingPortCap = "Sampling Port-Cap"
+    txt_Desc_ThirdGroup = ""
+    
+    
+    txt_Desc_BaseFrame = "Base Frame- C6x3.5x0.340 (C26153)"
+    txt_Desc_ForkliftTube = "Fork Lift Tubes- 6x3x3/16"
+    txt_Desc_VerticalAngle = "Vertical Angle- 3x3x3/16"
+    txt_Desc_HorizontalAngle = "Horizontal Angle-3x3x3/16"
+    txt_Desc_HorizontalCrossBrace = "Horizontal Cross Brace Angle-3x3x3/16"
+    txt_Desc_BagHook = "Bag Hook-3x3x3/16"
+    txt_Desc_Paint_4th = "Paint"
+    txt_Desc_FourthGroup = ""
+    
+    
+    txt_Desc_SupportFrame = "Support Frame Angles-2x2x3/16"
+    txt_Desc_SafetyRailing = "Safety Railing Tube-1.5x1.5x3/16"
+    txt_Desc_LadderFrame = "Ladder Frame and Standoff-FB2.5x3/8"
+    txt_Desc_LadderStep = "Ladder Step-D:1' Round Bar"
+    txt_Desc_FloorGrating = "Floor Grating, Galvanized, 3'(W),1-1/4'(H)x3/16'( Wide Bearing Bar)"
+    txt_Desc_SafetyChain = "Safety Chain"
+    txt_Desc_Paint_5th = "Paint"
+    txt_Desc_FifthGroup = ""
+    
+    txt_Desc_Media = "Media"
+    txt_Desc_LastRow = ""
+        
+    
+'    ''--- Variable name aur textbox control name same hai.isliye neeche k jaise statement likhne ki jaroorat nahi hai.
+'    ''-- agar variable name aur Textbox control name different hua to error aayega: Object not found.
+'    txt_Desc_SidePanel.Text = txt_Desc_SidePanel
+'    txt_Desc_BottomAndTop.Text = txt_Desc_BottomAndTop
+    
+    
+    
+End Sub
+
+
+Sub fillQuantity()
+
+    txt_Qty_SidePanel = 2
+    txt_Qty_BottomAndTop = 2
+
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
