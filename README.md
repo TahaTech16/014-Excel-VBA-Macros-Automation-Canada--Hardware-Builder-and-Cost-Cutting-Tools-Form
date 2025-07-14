@@ -1,2 +1,22 @@
 # 014-Excel-VBA-Macros-Automation-Canada--Hardware-Builder-and-Cost-Cutting-Tools-Form
 Designed and implemented an Excel VBA solution for a **Canadian client** to streamline hardware configuration and cost management
+
+### **Project Title:**
+
+**014 – Excel VBA Macros Automation (Canada) – Hardware Builder and Cost-Cutting Tools Form**
+
+### **Description:**
+
+Designed and implemented an Excel VBA solution for a **Canadian client** to streamline hardware configuration and cost management. The tool focused on building hardware kits based on user selections and optimizing costs through automated calculations.
+
+#### Key Features:
+
+* A custom **Excel UserForm** to guide users through selecting hardware components (CPU, RAM, storage, etc.)
+* Dynamic dropdowns and conditional options to ensure only compatible parts are selected
+* **Real-time cost calculations**, including discounts, taxes, and bulk pricing
+* Automated generation of hardware build summaries and **cost optimization suggestions**
+* Exportable reports and quotations in a print-ready format
+* Integration of formulas and VBA logic to ensure data validation and minimize manual entry errors
+
+**Objective:**
+To enable users to easily configure hardware systems, visualize costs, and identify opportunities for cost reduction—enhancing both **operational efficiency and financial decision-making**.
